@@ -1,7 +1,7 @@
-* {
+/** {
     padding: 0;
     margin: 0;
-} 
+} */
 
 body {
     background: #fff;
@@ -10,6 +10,7 @@ body {
     line-height: 18px;
     color: #000;
 }
+
 .listBox{
     width: 420px;
 }
@@ -48,34 +49,12 @@ img { border: none; }
     float: left;
 }
 
-#menu {
-    height: 30px;
-    line-height: 30px;
-    font-size: 12px;
-}
-
-#menu ul li {
-    text-align: left;
-    display: block;
-    float: left;
-    text-indent: 3px;
-}
-#menu ul li a {
-    font-weight: bold;
-    color: #333;
-}
-
-#content {
-    padding: 10px 5px;
-    text-align: justify;
-    min-height: 350px;
-}
 #bottom {
     margin: 0;
     text-align: center;    
     background: -moz-linear-gradient(center top, rgba(255, 255, 255, 255), rgba(202, 202, 202, 100)) repeat scroll 0 0 #D8D8D8;
     border: 1px solid #A8A8A8;
-    /*    font-weight: bold;*/
+        font-weight: bold;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.698);
 }
 #bottom p {
@@ -93,207 +72,4 @@ img { border: none; }
 #footer a {
     color: #666;
     font-weight: 600;
-}
-/*Alguns estilos utilizados para formatar colunas de tabelas e organizar campos e rótulos de formulário*/
-/*/////////////////////////////////////////////////////*/
-.col{text-align: right;}
-/*estilo da coluna esquerda da dialog da homePage*/
-.colsDialogL{
-    width: 120px;
-    text-align: right;
-    padding-right: 4px;
-    padding-bottom: 10px;
-    font: bold 10pt times, san-serif;
-}
-/*estilo da coluna direita da dialog da homePage*/
-.colsDialogR{
-    padding-bottom: 10px;
-    /*    border-bottom: 1px solid #bdb8b8;*/
-    width: 670px;
-}
-.col1{
-    text-align: left;
-    width: 150px;
-}
-.col2{
-    width: 150px;
-    text-align: right;
-    font: bold 10pt times, san-serif;
-}
-.col3{
-    text-align: left;
-    padding-left: 2px;
-    width: 370px;
-}
-.col_home1{
-    background-color: #F3F3F3;
-    width: 140px;
-    text-align: right;
-    color: #222;
-}
-.col_home2{
-    background-color: #F9F9F9;
-    width: 650px;
-    color: #222;
-}
-.col_nome{
-    width: 650px;
-}
-.col_cpf{
-    width: 110px;
-}
-.col_ra{
-    width: 70px;
-}
-.col_codigo{
-    width: 70px;
-}
-.col_opcoes{
-    width: 40px;
-}
-/*/////////////////////////////////////////////////////*/
-.cancelButton{
-    position: absolute;
-    left: 58%;
-}
-.saveButton{
-    position: absolute;
-    right: 58%;
-}
-
-#dlg_sobre{
-    padding: 20px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #33f;
-}
-#confirmDialog{
-    padding: 20px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #112;
-}
-.ui-paginator{
-    text-align: center;
-}
-.ui-tabs{
-    height: 100%;
-}
-#tabsProjeto{
-    height: 430px;
-}
-#tabsAluno{
-    height: 310px;
-}
-.hasDatepicker{
-    width: 145px;
-}
-.ui-datalist-item{
-    list-style: none;
-}
-._buttonPanel{
-    height: 40px;
-    margin-top: 5px;
-    padding: 10px 0;
-}
-.ui-datalist-data {
-    border:none;
-}
-
-#headerRelatorio {
-    height: 45px;
-    margin-bottom: 30px;
-}
-
-#headerRelatorio h1 {
-    /*    text-align: center;*/
-    padding: 20px 0 0 250px;
-    font-size: 20px;
-    letter-spacing: 0px;
-    color: #000;
-    border: none;
-}
-#headerRelatorio #logo {
-    margin-left: 0px;
-    width: 120px;
-    height: 45px;
-    /*    background: #fff url(../images/logoUTF.png) no-repeat;*/
-    float: left;
-}
-
-.itemRelatorio {
-    padding: 40px 0 20px;
-}
-.tituloCadastro{
-    padding: 3px 0 2px 0;
-    color: #0af;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-#loggedUser{
-    /*    float: right;*/
-    margin-right: 5px;
-    margin-left: 5px;
-    font-weight: bolder;
-    color: #0af;
-}
-#logged {
-    text-align: right;
-}
-#logout{
-    float: right;
-}
-
-._inputfield {
-    width: 420px;
-}
-.pdfLink {
-    float: right;
-    min-height: 35px;
-}
-.required{
-    color: red;
-}
-/* campos com fonte em uppercase*/
-.upper {
-    text-transform: uppercase;
-}
-
-/*Esta seção define os estilos das dialogs responsáveis responsáveis pela geração de relatorios*/
-/* INICIO */
-._formRelatorios {
-    position: absolute;
-    width: 540px;
-}
-._fieldRelatorios {
-    text-align: left;
-    width: 420px;
-}
-._labelRelatorios {
-    text-align: right;
-    width: 130px;
-}
-._buttonCloseReport {
-    position: relative;left: 50px;
-}
-._buttonSaveReport {
-    /*    position: relative;right: 70px;*/
-    width: 200px;
-    font-weight: bolder;
-}
-/* FIM */
-
-.listagem{
-    font-size: 1em;   
-}
-
-#panelLogin{
-    width: 500px;
-    margin: 0 auto;
-    height: 200px;    
-    background: -moz-linear-gradient(center top , rgba(255, 255, 255, 255), rgba(245, 245, 245, 200)) repeat scroll 0 0 #D8D8D8;
-    border: 1px solid #A8A8A8;
-    /*    font-weight: bold;*/
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.698);
 }

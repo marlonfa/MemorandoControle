@@ -46,6 +46,7 @@ public class MemorandoEntity implements Serializable {
     }
     
     public Date getData(){
+        this.data = new Date();
         return data;
     }
     

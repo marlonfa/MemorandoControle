@@ -10,22 +10,33 @@
     <p:growl id="messages"/> 
     <h:form>
         <h:panelGrid columns="2" columnClasses="col">
+            
             <h:outputLabel value="Campo Mourão," for="data" />
-            <p:calendar id="data" value="#{memorandoController.current.data}" pattern="dd/MM/yyyy" />
-            <h:outputLabel value="À" for="nome" />
-            <p:inputText id="nome" value="#{memorandoController.current.nome}" />
-            <h:outputLabel value="Assunto:" for="assunto" />
-            <p:inputText id="assunto" value="#{memorandoController.current.assunto}" />
-            <h:outputLabel value="Conteúdo:" for="conteudo" />
-            <p:inputTextarea id="conteudo" value="#{memorandoController.current.conteudo}" />
-            <h:outputLabel value="Atenciosamente:" />
+            <p:calendar id="data" value="#{memorandoController.current.data}" pattern="dd/MM/yyyy" showOn="button" />
+            
+            <h:outputLabel value="À " for="nome" />
+            <p:inputText id="nome" value="#{memorandoController.current.nome}" size="30" />
+            
+            <h:outputLabel value="Assunto: " for="assunto" />            
+            <p:inputText id="assunto" value="#{memorandoController.current.assunto}" size="30" />
+            
+            <h:outputLabel value="Conteúdo: " for="conteudo" />
+            <p:editor id="conteudo" value="#{memorandoController.current.conteudo}" width="500" />
+            
+            <h:outputLabel value="Atenciosamente: " />
             <h:selectOneMenu value="#{memorandoController.current.remetente}" converter="#{memorandoController.getRemetenteConverter()}" > 
+                
                 <f:selectItem itemLabel="Selecione um Remetente" itemValue="" />
                 <f:selectItems value="#{memorandoController.listarRemetentes()}" var="remetente" itemLabel="#{remetente.nome}" />
+                
             </h:selectOneMenu>
-        </h:panelGrid>
-        <br />
-        <p:commandButton value="Salvar" actionListener="#{memorandoController.create()}" ajax="false" />                      
+            
+            <h:outputLabel value="Anexar Arquivo: " for="upload" />
+            <p:fileUpload id="upload" value="#{fileUploadController.file}" mode="simple"/>
+            
+            <h:outputLabel />
+            <p:commandButton value="Salvar" actionListener="#{memorandoController.create()}" ajax="false" />     
+        </h:panelGrid>                 
     </h:form>
 </div>
 </html>
