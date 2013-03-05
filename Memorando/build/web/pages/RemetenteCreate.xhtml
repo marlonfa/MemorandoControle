@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets"> 
+    
+    <div>
+    <p:growl id="messages"/> 
+    <h:form>
+        <h:panelGrid columns="2" columnClasses="col">
+            <h:outputLabel value="Nome do Remetente:" for="remetente" />
+            <p:inputText id="remetente" value="#{remetenteController.current.nome}" />                    
+        </h:panelGrid>
+        <br />
+        <p:commandButton value="Salvar" actionListener="#{remetenteController.create}" ajax="false" />                      
+    </h:form>
+</div>
+</html>
+

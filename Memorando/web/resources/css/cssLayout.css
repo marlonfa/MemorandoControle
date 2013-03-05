@@ -1,0 +1,14 @@
+body {
+    width: 800px;
+    margin: 25px auto;
+}
+#top {
+    position: relative;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    clear: both;
+    padding: 5px;
+}

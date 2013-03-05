@@ -1,0 +1,31 @@
+<ui:composition template="./templates/index.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:shiro="http://shiro.apache.org/tags">
+    <ui:define name="slotLogged">
+        Espaço que indica se o usuário está logado ou não.
+    </ui:define>
+    <ui:define name="slotTop">
+        <h:form>
+            <p:menubar> 
+                <p:menuitem value="Criar Memorando" action="#{pageManager.setPg1()}"
+                            ajax="false" />
+                <p:menuitem value="Criar Remetente" action="#{pageManager.setPg2()}"
+                            ajax="false" />
+                <p:menuitem value="Listar Memorandos" action="#{pageManager.setPg3()}"
+                            ajax="false" />
+                <p:menuitem value="Listar Remetentes" action="#{pageManager.setPg4()}"
+                            ajax="false" />                
+            </p:menubar>            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="slotContent">
+        <ui:include src="#{pageManager.paginaAtiva}"></ui:include>
+    </ui:define>
+
+</ui:composition>
+

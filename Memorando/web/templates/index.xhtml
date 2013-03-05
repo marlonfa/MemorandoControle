@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/style.css" rel="stylesheet" type="text/css" />
+        <title>Cadastro de Memorandos</title>
+    </h:head>
+
+    <h:body>
+        <div id="wrap">
+
+            <div id="header">
+                <a href="http://www.utfpr.edu.br/campomourao" title="UTFPR - Campo Mourão">
+                    <div id="logo"></div>
+                </a>
+                <h1>Diretoria de Pesquisa e Pós Graduação</h1>
+                <h1 class="styleNone">Cadastro de Memorandos</h1>
+            </div>
+
+            <div id="logged">
+                <ui:insert name="slotLogged">Logged</ui:insert>
+            </div>
+
+            <div id="menu">
+                <ui:insert name="slotTop">Top</ui:insert>
+            </div>
+
+            <div id="content">
+                <ui:insert name="slotContent">Content</ui:insert>
+            </div>
+
+            <div>
+                <p:panel id="bottom">
+                    <p>CAMPUS CAMPO MOURÃO BR 369 - km 0,5 87301-006 - Caixa Postal: 271 - Campo Mourão - PR - Brasil</p>
+                    <p>Telefone Geral +55 (44) 3518-1400</p>
+                </p:panel>
+            </div>
+
+            <div id="footer">
+                &copy; 2012 <a href="mailto:marlonfa@gmail.com">Marlon Fernandes</a> | <a href="mailto:reginaldo.re@gmail.com">Reginaldo Re</a> | <a href="mailto:marvas1987@gmail.com">Marcelo F. Vasconcelos</a>
+            </div>
+        </div>
+
+    </h:body>
+</html>

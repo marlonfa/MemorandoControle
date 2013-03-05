@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets"> 
+    <div>
+    <p:growl id="messages"/> 
+    <h:form>
+        <p:dataTable var="memorando" value="#{memorandoController.listarMemorandos()}" id="asdfg">  
+            <f:facet name="header">
+                Lista de Memorandos
+            </f:facet>
+            <p:column sortBy="#{memorando.id}" id="id">
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText value="#{memorando.id}" />
+            </p:column>
+            <p:column sortBy="#{memorando.data}">
+                <f:facet name="header">
+                    <h:outputText value="Data"  />
+                </f:facet>
+                <h:outputText value="#{memorando.data}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>    
+            </p:column>
+            <p:column sortBy="#{memorando.nome}">
+                <f:facet name="header">
+                    <h:outputText value="Destinatário" />
+                </f:facet>
+                <h:outputText value="#{memorando.nome}" />
+            </p:column>
+            <p:column sortBy="#{memorando.assunto}">
+                <f:facet name="header">
+                    <h:outputText value="Assunto" />
+                </f:facet>
+                <h:outputText value="#{memorando.assunto}" />
+            </p:column>
+            <p:column sortBy="#{memorando.conteudo}">
+                <f:facet name="header">
+                    <h:outputText value="Conteúdo" />
+                </f:facet>
+                <h:outputText value="#{memorando.conteudo}" />
+            </p:column>
+            <p:column sortBy="#{memorando.remetente}">
+                <f:facet name="header">
+                    <h:outputText value="Remetente" />
+                </f:facet>
+                <h:outputText value="#{memorando.remetente}" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</div>
+
+
+</html>

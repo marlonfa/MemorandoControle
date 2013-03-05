@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets"> 
+    <div>
+
+    <p:growl id="messages"/> 
+    <h:form>
+        <h:panelGrid columns="2" columnClasses="col">
+            <h:outputLabel value="Campo Mourão," for="data" />
+            <p:calendar id="data" value="#{memorandoController.current.data}" pattern="dd/MM/yyyy" />
+            <h:outputLabel value="À" for="nome" />
+            <p:inputText id="nome" value="#{memorandoController.current.nome}" />
+            <h:outputLabel value="Assunto:" for="assunto" />
+            <p:inputText id="assunto" value="#{memorandoController.current.assunto}" />
+            <h:outputLabel value="Conteúdo:" for="conteudo" />
+            <p:inputTextarea id="conteudo" value="#{memorandoController.current.conteudo}" />
+            <h:outputLabel value="Atenciosamente:" />
+            <h:selectOneMenu value="#{memorandoController.current.remetente}" converter="#{memorandoController.getRemetenteConverter()}" > 
+                <f:selectItem itemLabel="Selecione um Remetente" itemValue="" />
+                <f:selectItems value="#{memorandoController.listarRemetentes()}" var="remetente" itemLabel="#{remetente.nome}" />
+            </h:selectOneMenu>
+        </h:panelGrid>
+        <br />
+        <p:commandButton value="Salvar" actionListener="#{memorandoController.create()}" ajax="false" />                      
+    </h:form>
+</div>
+</html>
