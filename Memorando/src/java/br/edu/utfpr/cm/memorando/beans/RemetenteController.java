@@ -24,6 +24,7 @@ public class RemetenteController implements Serializable {
     
     private RemetenteEntity current;
     private DataModel items = null;
+    
     @EJB
     private RemetenteFacade ejbFacade;
     

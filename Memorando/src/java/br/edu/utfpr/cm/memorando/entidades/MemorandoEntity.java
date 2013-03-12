@@ -1,33 +1,28 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.utfpr.cm.memorando.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
-
-/**
- *
- * @author marlon
- */
 @Entity
+@Table(name = "memorando")
 public class MemorandoEntity implements Serializable {
-   
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Long id;
 
-    @Column
+    @Column 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
     
-    @Column
+    @Column 
     private String nomeDestinatario; 
     
-    @Column
+    @Column 
     private String assunto;
     
     @Column
@@ -35,7 +30,10 @@ public class MemorandoEntity implements Serializable {
     
     @JoinColumn(name = "remetente_id", referencedColumnName="id", nullable=false)
     @ManyToOne(optional=false)
-    private RemetenteEntity remetente;
+    private RemetenteEntity remetente;    
+    
+    @OneToMany(mappedBy="memorando")
+    private List<AnexoEntity> anexoList;
 
     public Long getId() {
         return id;
@@ -44,63 +42,97 @@ public class MemorandoEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public Date getData(){
+
+    public Date getData() {
         this.data = new Date();
         return data;
     }
-    
-    public void setData(Date data){
+
+    public void setData(Date data) {
         this.data = data;
     }
-    
-    public String getNome(){
+
+    public String getNomeDestinatario() {
         return nomeDestinatario;
     }
-    
-    public void setNome(String nome){
-        this.nomeDestinatario = nome;
+
+    public void setNomeDestinatario(String nomeDestinatario) {
+        this.nomeDestinatario = nomeDestinatario;
     }
-    
-    public String getAssunto(){
+
+    public String getAssunto() {
         return assunto;
     }
-    
-    public void setAssunto(String assunto){
+
+    public void setAssunto(String assunto) {
         this.assunto = assunto;
     }
-    
-    public String getConteudo(){
+
+    public String getConteudo() {
         return conteudo;
     }
-    
-    public void setConteudo(String conteudo){
+
+    public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
     }
-    
-    public RemetenteEntity getRemetente(){
+
+    public RemetenteEntity getRemetente() {
         return remetente;
     }
-    
-    public void setRemetente(RemetenteEntity remetente){
+
+    public void setRemetente(RemetenteEntity remetente) {
         this.remetente = remetente;
     }
-    
+
+    public List<AnexoEntity> getAnexoList() {
+        return anexoList;
+    }
+
+    public void setAnexoList(List<AnexoEntity> anexoList) {
+        this.anexoList = anexoList;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 89 * hash + (this.data != null ? this.data.hashCode() : 0);
+        hash = 89 * hash + (this.nomeDestinatario != null ? this.nomeDestinatario.hashCode() : 0);
+        hash = 89 * hash + (this.assunto != null ? this.assunto.hashCode() : 0);
+        hash = 89 * hash + (this.conteudo != null ? this.conteudo.hashCode() : 0);
+        hash = 89 * hash + (this.remetente != null ? this.remetente.hashCode() : 0);
+        hash = 89 * hash + (this.anexoList != null ? this.anexoList.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MemorandoEntity)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        MemorandoEntity other = (MemorandoEntity) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MemorandoEntity other = (MemorandoEntity) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.data != other.data && (this.data == null || !this.data.equals(other.data))) {
+            return false;
+        }
+        if ((this.nomeDestinatario == null) ? (other.nomeDestinatario != null) : !this.nomeDestinatario.equals(other.nomeDestinatario)) {
+            return false;
+        }
+        if ((this.assunto == null) ? (other.assunto != null) : !this.assunto.equals(other.assunto)) {
+            return false;
+        }
+        if ((this.conteudo == null) ? (other.conteudo != null) : !this.conteudo.equals(other.conteudo)) {
+            return false;
+        }
+        if (this.remetente != other.remetente && (this.remetente == null || !this.remetente.equals(other.remetente))) {
+            return false;
+        }
+        if (this.anexoList != other.anexoList && (this.anexoList == null || !this.anexoList.equals(other.anexoList))) {
             return false;
         }
         return true;
@@ -108,7 +140,11 @@ public class MemorandoEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.utfpr.cm.memorando.entidades.MemorandoEntity[ id=" + id + " ]";
+        return "MemorandoEntity{" + "id=" + id + ", data=" + data + ", nomeDestinatario=" + nomeDestinatario + ", assunto=" + assunto + ", conteudo=" + conteudo + ", remetente=" + remetente + ", anexoList=" + anexoList + '}';
     }
+
+    
+
+    
     
 }

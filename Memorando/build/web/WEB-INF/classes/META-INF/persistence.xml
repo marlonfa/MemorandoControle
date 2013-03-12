@@ -5,9 +5,10 @@
     <jta-data-source>data_base</jta-data-source>
     <class>br.edu.utfpr.cm.memorando.entidades.MemorandoEntity</class>
     <class>br.edu.utfpr.cm.memorando.entidades.RemetenteEntity</class>
+    <class>br.edu.utfpr.cm.memorando.entidades.AnexoEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
-      <property name="eclipselink.ddl-generation" value="create-tables"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

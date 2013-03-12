@@ -1,15 +1,17 @@
 package br.edu.utfpr.cm.memorando.beans;
 
+import br.edu.utfpr.cm.memorando.conversores.AnexoConverter;
 import br.edu.utfpr.cm.memorando.conversores.RemetenteConverter;
+import br.edu.utfpr.cm.memorando.entidades.AnexoEntity;
 import br.edu.utfpr.cm.memorando.entidades.MemorandoEntity;
 import br.edu.utfpr.cm.memorando.entidades.RemetenteEntity;
+import br.edu.utfpr.cm.memorando.jpa.AnexoFacade;
 import br.edu.utfpr.cm.memorando.jpa.MemorandoFacade;
 import br.edu.utfpr.cm.memorando.jpa.RemetenteFacade;
 import br.edu.utfpr.cm.memorando.jsfutil.JsfUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
@@ -18,56 +20,97 @@ import javax.faces.model.DataModel;
 @SessionScoped
 public class MemorandoController implements Serializable {
 
-    private MemorandoEntity current;
+    private MemorandoEntity memorando;
+ 
     private DataModel items = null;
+    
     @EJB
-    private MemorandoFacade ejbFacade;
+    private MemorandoFacade ejbMemorandoFacade;
+    
     @EJB
-    private RemetenteFacade remetenteFacade;
-
-    public MemorandoEntity getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(MemorandoEntity current) {
-        this.current = current;
-    }
-
+    private RemetenteFacade ejbRemetenteFacade;
+    
+    @EJB
+    private AnexoFacade ejbAnexoFacade;
+    
     public MemorandoController() {
-        this.current = new MemorandoEntity();
+        this.memorando = new MemorandoEntity();
     }
 
-    private MemorandoFacade getFacade() {
-        return ejbFacade;
+    public MemorandoEntity getMemorando() {
+        return memorando;
     }
 
-     private RemetenteFacade getRemetenteFacade() {
-        return remetenteFacade;
+    public void setMemorando(MemorandoEntity memorando) {
+        this.memorando = memorando;
+    }
+
+     public DataModel getItems() {
+        return items;
+    }
+
+    public void setItems(DataModel items) {
+        this.items = items;
+    }
+
+    public MemorandoFacade getEjbMemorandoFacade() {
+        return ejbMemorandoFacade;
+    }
+
+    public void setEjbMemorandoFacade(MemorandoFacade ejbMemorandoFacade) {
+        this.ejbMemorandoFacade = ejbMemorandoFacade;
+    }
+
+    public RemetenteFacade getEjbRemetenteFacade() {
+        return ejbRemetenteFacade;
+    }
+
+    public void setEjbRemetenteFacade(RemetenteFacade ejbRemetenteFacade) {
+        this.ejbRemetenteFacade = ejbRemetenteFacade;
+    }
+
+    public AnexoFacade getEjbAnexoFacade() {
+        return ejbAnexoFacade;
+    }
+
+    public void setEjbAnexoFacade(AnexoFacade ejbAnexoFacade) {
+        this.ejbAnexoFacade = ejbAnexoFacade;
     }
 
     public String create() {
         try {
-            getFacade().create(current);
+            getEjbMemorandoFacade().create(this.memorando);
+            
             JsfUtil.addSuccessMessage("Memorando Criado");
-            this.current = new MemorandoEntity();
+            this.memorando = new MemorandoEntity();
             return "Create";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, "Erro de Persistencia");
+            JsfUtil.addErrorMessage(e, "Erro de Persistencia (MemorandoController)");
             return null;
         }
     }
 
     public List<MemorandoEntity> listarMemorandos() {
-        return getFacade().findAll();
+        return getEjbMemorandoFacade().findAll();
+    }   
+    
+    public List<RemetenteEntity> listarRemetentes(){
+        return getEjbRemetenteFacade().findAll();
     }
-
+    
+    public List<AnexoEntity> listarAnexo(){
+        return getEjbAnexoFacade().findAll();
+    }
+    
     public Object getRemetenteConverter() {
         RemetenteConverter rc = new RemetenteConverter();
-        rc.setRemetenteFacade(remetenteFacade);
+        rc.setRemetenteFacade(ejbRemetenteFacade);
         return rc;
     }
     
-    public List<RemetenteEntity> listarRemetentes(){
-        return getRemetenteFacade().findAll();
+    public Object getAnexoConverter() {
+        AnexoConverter rc = new AnexoConverter();
+        rc.setAnexoFacade(ejbAnexoFacade);
+        return rc;
     }
 }
