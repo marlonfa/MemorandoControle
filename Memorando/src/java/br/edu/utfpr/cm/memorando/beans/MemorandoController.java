@@ -15,6 +15,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
+import org.primefaces.event.FileUploadEvent;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 
 @ManagedBean(name = "memorandoController")
 @SessionScoped
@@ -76,6 +79,23 @@ public class MemorandoController implements Serializable {
     public void setEjbAnexoFacade(AnexoFacade ejbAnexoFacade) {
         this.ejbAnexoFacade = ejbAnexoFacade;
     }
+    
+    //Pega um arquivo e envia
+    public void handleFileUpload(FileUploadEvent event) {        
+        byte[] bFile = null;
+        try {
+            System.out.println("ENTROUUUUUU===>>>> ");
+            bFile = event.getFile().getContents();
+            AnexoEntity anexo = new AnexoEntity();
+            anexo.setArquivo(bFile);
+            this.memorando.getAnexoList().add(anexo);
+            FacesMessage msg = new FacesMessage("Anexo ...", event.getFile().getFileName() + " Foi Anexado!!!.");  
+            FacesContext.getCurrentInstance().addMessage(null, msg);              
+        } catch (Exception e) {
+            System.out.println("ERRO===>>>> "+e);
+        }        
+    }
+    
 
     public String create() {
         try {

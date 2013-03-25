@@ -29,19 +29,18 @@
                 </h:selectOneMenu>
 
                 <h:outputLabel value="" for="upload" />               
-                <p:fileUpload id="upload" fileUploadListener="#{anexoController.handleFileUpload}"  
+                <p:fileUpload id="upload" fileUploadListener="#{memorandoController.handleFileUpload}"  
                               mode="advanced"  
                               update="messages"   
                               multiple="true"  
                               sizeLimit="9999999"   
                               allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
                               label="Procurar"
-                              cancelLabel="Cancelar" converter="#{memorandoController.getAnexoConverter()}"/>  
+                              cancelLabel="Cancelar" converter="#{memorandoController.getAnexoConverter()}"  />  
                 
                 <h:outputLabel value="" for="btnSalvar" />
                 <p:commandButton id="btnSalvar" value="Salvar" actionListener="#{memorandoController.create()}" ajax="false" />   
 
-            
             </h:panelGrid>    
         </h:form> 
 

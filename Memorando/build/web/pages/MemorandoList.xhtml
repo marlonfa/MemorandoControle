@@ -26,11 +26,11 @@
                     <f:convertDateTime pattern="dd/MM/yyyy" />
                 </h:outputText>    
             </p:column>
-            <p:column sortBy="#{memorando.nome}">
+            <p:column sortBy="#{memorando.nomeDestinatario}">
                 <f:facet name="header">
                     <h:outputText value="Destinatário" />
                 </f:facet>
-                <h:outputText value="#{memorando.nome}" />
+                <h:outputText value="#{memorando.nomeDestinatario}" />
             </p:column>
             <p:column sortBy="#{memorando.assunto}">
                 <f:facet name="header">
@@ -48,7 +48,7 @@
                 <f:facet name="header">
                     <h:outputText value="Remetente" />
                 </f:facet>
-                <h:outputText value="#{memorando.remetente}" />
+                <h:outputText value="#{memorando.remetente.nome}" />
             </p:column>
         </p:dataTable>
     </h:form>

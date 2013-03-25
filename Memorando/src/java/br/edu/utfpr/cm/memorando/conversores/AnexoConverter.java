@@ -23,40 +23,14 @@ public class AnexoConverter implements Converter{
         if (value == null || value.length() == 0 || value.equals("null")) {
             return null;
         }
-        Object o  = ejbAnexoFacade.find(getKey(value));
-        return ejbAnexoFacade.find(getKey(value));
-    }
-
-    Long getKey(String value) {
-        java.lang.Long key;
-        key = Long.valueOf(value);
-        return key;
-    }
-
-    String getStringKey(java.lang.Long value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(value);
-        return sb.toString();
+        return ejbAnexoFacade.find(new Long(value));
     }
 
     @Override
-    public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-        if ((object == null) || (object instanceof String)){
+    public String getAsString(FacesContext facesContext, UIComponent component, Object value) {
+        if ((value == null) || (value instanceof String)){
             return null;
-        }
-        if (object instanceof AnexoEntity) {
-            AnexoEntity a = (AnexoEntity) object;
-            return getStringKey(a.getId());
-        } else {
-            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + AnexoFacade.class.getName());
-        }
+        }        
+        return ((AnexoEntity)value).getId().toString();
     }
 }
-
-
-
-
-
-    
-   
-

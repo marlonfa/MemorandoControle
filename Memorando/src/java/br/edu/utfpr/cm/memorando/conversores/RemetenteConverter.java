@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.utfpr.cm.memorando.conversores;
 
 import javax.faces.convert.FacesConverter;
@@ -11,12 +7,6 @@ import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-
-/**
- *
- * @author marlon
- */
-
 
 @FacesConverter(forClass = RemetenteEntity.class)
 public class RemetenteConverter implements Converter{
@@ -30,35 +20,17 @@ public class RemetenteConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
-        if (value == null || value.length() == 0 || value.equals("null")) {
-            return null;
+        if(value == null || value.length() == 0 || value.equals("null")){
+            return null; 
         }
-        Object o  = ejbFacade.find(getKey(value));
-        return ejbFacade.find(getKey(value));
-    }
-
-    Long getKey(String value) {
-        java.lang.Long key;
-        key = Long.valueOf(value);
-        return key;
-    }
-
-    String getStringKey(java.lang.Long value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(value);
-        return sb.toString();
+        return ejbFacade.find(new Long(value));
     }
 
     @Override
-    public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-        if ((object == null) || (object instanceof String)){
+    public String getAsString(FacesContext facesContext, UIComponent component, Object value) {
+        if ((value == null) || (value instanceof String)){
             return null;
-        }
-        if (object instanceof RemetenteEntity) {
-            RemetenteEntity a = (RemetenteEntity) object;
-            return getStringKey(a.getId());
-        } else {
-            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + RemetenteFacade.class.getName());
-        }
+        }        
+        return ((RemetenteEntity)value).getId().toString();
     }
 }

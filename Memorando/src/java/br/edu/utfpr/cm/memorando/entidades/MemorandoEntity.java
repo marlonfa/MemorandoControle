@@ -15,24 +15,24 @@ public class MemorandoEntity implements Serializable {
     @Column (name = "id")
     private Long id;
 
-    @Column 
+    @Column (name = "data") 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
     
-    @Column 
+    @Column  (name = "nome_destinatario") 
     private String nomeDestinatario; 
     
-    @Column 
+    @Column  (name = "assunto") 
     private String assunto;
     
-    @Column
+    @Column (name = "conteudo") 
     private String conteudo;
     
     @JoinColumn(name = "remetente_id", referencedColumnName="id", nullable=false)
     @ManyToOne(optional=false)
     private RemetenteEntity remetente;    
     
-    @OneToMany(mappedBy="memorando")
+    @OneToMany(mappedBy="memorando", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<AnexoEntity> anexoList;
 
     public Long getId() {

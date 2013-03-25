@@ -16,6 +16,7 @@ public class RemetenteEntity implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Long id;
     
     @Column (name = "nome")
@@ -59,7 +60,9 @@ public class RemetenteEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.utfpr.cm.memorando.entidades.RemetenteEntity[ id=" + id + " ]";
+        return "RemetenteEntity{" + "id=" + id + ", nome=" + nome + '}';
     }
+
+    
     
 }
