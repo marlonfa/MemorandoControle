@@ -9,9 +9,9 @@ import javax.persistence.*;
 public class MemorandoEntity implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    
+       
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "id")
     private Long id;
 
@@ -32,7 +32,7 @@ public class MemorandoEntity implements Serializable {
     @ManyToOne(optional=false)
     private RemetenteEntity remetente;    
     
-    @OneToMany(mappedBy="memorando", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = AnexoEntity.class)
     private List<AnexoEntity> anexoList;
 
     public Long getId() {

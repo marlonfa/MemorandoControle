@@ -10,6 +10,7 @@ import br.edu.utfpr.cm.memorando.jpa.MemorandoFacade;
 import br.edu.utfpr.cm.memorando.jpa.RemetenteFacade;
 import br.edu.utfpr.cm.memorando.jsfutil.JsfUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -24,6 +25,8 @@ import javax.faces.application.FacesMessage;
 public class MemorandoController implements Serializable {
 
     private MemorandoEntity memorando;
+    private AnexoEntity anexo;
+    
  
     private DataModel items = null;
     
@@ -36,8 +39,11 @@ public class MemorandoController implements Serializable {
     @EJB
     private AnexoFacade ejbAnexoFacade;
     
+    
     public MemorandoController() {
-        this.memorando = new MemorandoEntity();
+        this.memorando = new MemorandoEntity();        
+        this.anexo = new AnexoEntity();
+        this.memorando.setAnexoList(new ArrayList<AnexoEntity>());         
     }
 
     public MemorandoEntity getMemorando() {
@@ -86,8 +92,7 @@ public class MemorandoController implements Serializable {
         try {
             System.out.println("ENTROUUUUUU===>>>> ");
             bFile = event.getFile().getContents();
-            AnexoEntity anexo = new AnexoEntity();
-            anexo.setArquivo(bFile);
+            this.anexo.setArquivo(bFile);
             this.memorando.getAnexoList().add(anexo);
             FacesMessage msg = new FacesMessage("Anexo ...", event.getFile().getFileName() + " Foi Anexado!!!.");  
             FacesContext.getCurrentInstance().addMessage(null, msg);              
@@ -98,11 +103,11 @@ public class MemorandoController implements Serializable {
     
 
     public String create() {
-        try {
-            getEjbMemorandoFacade().create(this.memorando);
-            
+        try {            
+            getEjbMemorandoFacade().create(this.memorando);  
             JsfUtil.addSuccessMessage("Memorando Criado");
             this.memorando = new MemorandoEntity();
+            this.anexo = new AnexoEntity();
             return "Create";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, "Erro de Persistencia (MemorandoController)");
