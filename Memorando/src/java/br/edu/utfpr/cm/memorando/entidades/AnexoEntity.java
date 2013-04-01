@@ -6,12 +6,19 @@ package br.edu.utfpr.cm.memorando.entidades;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,7 +37,7 @@ public class AnexoEntity implements Serializable {
     
     @Lob
     @Column(name="arquivo")
-    private byte[] arquivo;    
+    private byte[] arquivo;  
     
     public Long getId() {
         return id;
@@ -50,7 +57,7 @@ public class AnexoEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 67 * hash + Arrays.hashCode(this.arquivo);
         return hash;
@@ -78,6 +85,10 @@ public class AnexoEntity implements Serializable {
     public String toString() {
         return "AnexoEntity{" + "id=" + id + ", arquivo=" + arquivo + '}';
     }
+    
+    
+
+   
     
     
 }

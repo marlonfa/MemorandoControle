@@ -18,7 +18,7 @@ public class MemorandoEntity implements Serializable {
     @Column (name = "data") 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
-    
+       
     @Column  (name = "nome_destinatario") 
     private String nomeDestinatario; 
     
@@ -26,14 +26,15 @@ public class MemorandoEntity implements Serializable {
     private String assunto;
     
     @Column (name = "conteudo") 
-    private String conteudo;
+    private String conteudo;  
+    
+    @JoinColumn(name = "memorando", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<AnexoEntity> anexoList;
     
     @JoinColumn(name = "remetente_id", referencedColumnName="id", nullable=false)
     @ManyToOne(optional=false)
-    private RemetenteEntity remetente;    
-    
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = AnexoEntity.class)
-    private List<AnexoEntity> anexoList;
+    private RemetenteEntity remetente; 
 
     public Long getId() {
         return id;
@@ -76,14 +77,6 @@ public class MemorandoEntity implements Serializable {
         this.conteudo = conteudo;
     }
 
-    public RemetenteEntity getRemetente() {
-        return remetente;
-    }
-
-    public void setRemetente(RemetenteEntity remetente) {
-        this.remetente = remetente;
-    }
-
     public List<AnexoEntity> getAnexoList() {
         return anexoList;
     }
@@ -92,16 +85,26 @@ public class MemorandoEntity implements Serializable {
         this.anexoList = anexoList;
     }
 
+    public RemetenteEntity getRemetente() {
+        return remetente;
+    }
+
+    public void setRemetente(RemetenteEntity remetente) {
+        this.remetente = remetente;
+    }
+    
+    
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 89 * hash + (this.data != null ? this.data.hashCode() : 0);
-        hash = 89 * hash + (this.nomeDestinatario != null ? this.nomeDestinatario.hashCode() : 0);
-        hash = 89 * hash + (this.assunto != null ? this.assunto.hashCode() : 0);
-        hash = 89 * hash + (this.conteudo != null ? this.conteudo.hashCode() : 0);
-        hash = 89 * hash + (this.remetente != null ? this.remetente.hashCode() : 0);
-        hash = 89 * hash + (this.anexoList != null ? this.anexoList.hashCode() : 0);
+        int hash = 3;
+        hash = 31 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 31 * hash + (this.data != null ? this.data.hashCode() : 0);
+        hash = 31 * hash + (this.nomeDestinatario != null ? this.nomeDestinatario.hashCode() : 0);
+        hash = 31 * hash + (this.assunto != null ? this.assunto.hashCode() : 0);
+        hash = 31 * hash + (this.conteudo != null ? this.conteudo.hashCode() : 0);
+        hash = 31 * hash + (this.anexoList != null ? this.anexoList.hashCode() : 0);
+        hash = 31 * hash + (this.remetente != null ? this.remetente.hashCode() : 0);
         return hash;
     }
 
@@ -129,10 +132,10 @@ public class MemorandoEntity implements Serializable {
         if ((this.conteudo == null) ? (other.conteudo != null) : !this.conteudo.equals(other.conteudo)) {
             return false;
         }
-        if (this.remetente != other.remetente && (this.remetente == null || !this.remetente.equals(other.remetente))) {
+        if (this.anexoList != other.anexoList && (this.anexoList == null || !this.anexoList.equals(other.anexoList))) {
             return false;
         }
-        if (this.anexoList != other.anexoList && (this.anexoList == null || !this.anexoList.equals(other.anexoList))) {
+        if (this.remetente != other.remetente && (this.remetente == null || !this.remetente.equals(other.remetente))) {
             return false;
         }
         return true;
@@ -140,8 +143,12 @@ public class MemorandoEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "MemorandoEntity{" + "id=" + id + ", data=" + data + ", nomeDestinatario=" + nomeDestinatario + ", assunto=" + assunto + ", conteudo=" + conteudo + ", remetente=" + remetente + ", anexoList=" + anexoList + '}';
+        return "MemorandoEntity{" + "id=" + id + ", data=" + data + ", nomeDestinatario=" + nomeDestinatario + ", assunto=" + assunto + ", conteudo=" + conteudo + ", anexoList=" + anexoList + ", remetente=" + remetente + '}';
     }
+
+    
+
+    
 
     
 

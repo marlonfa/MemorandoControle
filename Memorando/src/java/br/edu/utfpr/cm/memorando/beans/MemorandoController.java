@@ -41,9 +41,7 @@ public class MemorandoController implements Serializable {
     
     
     public MemorandoController() {
-        this.memorando = new MemorandoEntity();        
-        this.anexo = new AnexoEntity();
-        this.memorando.setAnexoList(new ArrayList<AnexoEntity>());         
+        this.memorando = new MemorandoEntity();  
     }
 
     public MemorandoEntity getMemorando() {
@@ -90,10 +88,14 @@ public class MemorandoController implements Serializable {
     public void handleFileUpload(FileUploadEvent event) {        
         byte[] bFile = null;
         try {
-            System.out.println("ENTROUUUUUU===>>>> ");
+            this.memorando.setAnexoList(new ArrayList<AnexoEntity>());
+            this.anexo = new AnexoEntity();
             bFile = event.getFile().getContents();
             this.anexo.setArquivo(bFile);
+            System.out.println(anexo.getArquivo());
+            System.out.println(memorando);
             this.memorando.getAnexoList().add(anexo);
+            
             FacesMessage msg = new FacesMessage("Anexo ...", event.getFile().getFileName() + " Foi Anexado!!!.");  
             FacesContext.getCurrentInstance().addMessage(null, msg);              
         } catch (Exception e) {
