@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -24,6 +25,7 @@ import javax.faces.model.DataModel;
 import org.primefaces.event.FileUploadEvent;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIParameter;
 import net.sf.jmimemagic.Magic;
 import net.sf.jmimemagic.MagicException;
 import net.sf.jmimemagic.MagicMatch;
@@ -114,15 +116,19 @@ public class MemorandoController implements Serializable {
     }
 
     public StreamedContent downloadAnexo() {
+        /*Cria um map de parametros*/
+         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+         /*Atribui a string nomeArquivo o valor do parametro nomeArquivo*/
+	 String nomeArquivo = params.get("nomeArquivo");
         try {
             /*Cria um InputStream com o campo byte[] */
             InputStream stream = new ByteArrayInputStream(this.anexoSelecionado.getArquivo());
-            /*Classe da biblioteca jminemagic cria um parser*/
+            /*Classe da biblioteca jminemagic cria um parser Necessário o jar commons-logging*/
             Magic parser = new Magic();
             /*Pega o tipo de Mime do byte[]*/
             MagicMatch match = parser.getMagicMatch(this.anexoSelecionado.getArquivo());
             //Primeiro parametro é o stream, segundo é o tipo de arquivo, terceiro é o nome do arquivo
-            file = new DefaultStreamedContent(stream, match.getMimeType(), this.getAnexoSelecionado().getNomeArquivo());
+            file = new DefaultStreamedContent(stream, match.getMimeType(), nomeArquivo);
         } catch (MagicParseException ex) {
             Logger.getLogger(MemorandoController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MagicMatchNotFoundException ex) {
