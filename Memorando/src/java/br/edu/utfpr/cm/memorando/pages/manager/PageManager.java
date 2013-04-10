@@ -43,6 +43,10 @@ public class PageManager implements Serializable {
         this.paginaAtiva = "./pages/RemetenteList.xhtml";
     }
     
+    public void setPg5() {
+        this.paginaAtiva = "./pages/AnexoList.xhtml";
+    }
+    
     public String getPg1() {
         return this.paginaAtiva;
     }

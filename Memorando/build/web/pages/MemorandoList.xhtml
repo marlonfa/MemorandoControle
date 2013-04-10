@@ -50,6 +50,17 @@
                 </f:facet>
                 <h:outputText value="#{memorando.remetente.nome}" />
             </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Anexo" />
+                </f:facet>
+                <h:commandLink action="#{pageManager.setPg5()}" >
+                    <h:outputText value="Visualizar" rendered="#{not empty memorando.anexoList}" />
+                        <f:setPropertyActionListener target="#{memorandoController.memorandoSelecionado}" value="#{memorando}" />
+                    </h:commandLink>       
+                
+            </p:column>
+           
         </p:dataTable>
     </h:form>
 </div>

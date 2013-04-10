@@ -6,19 +6,12 @@ package br.edu.utfpr.cm.memorando.entidades;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -37,8 +30,11 @@ public class AnexoEntity implements Serializable {
     
     @Lob
     @Column(name="arquivo")
-    private byte[] arquivo;  
+    private byte[] arquivo; 
     
+    @Column(name = "nome_arquivo")
+    private String nomeArquivo;
+
     public Long getId() {
         return id;
     }
@@ -55,11 +51,20 @@ public class AnexoEntity implements Serializable {
         this.arquivo = arquivo;
     }
 
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 67 * hash + Arrays.hashCode(this.arquivo);
+        int hash = 7;
+        hash = 73 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 73 * hash + Arrays.hashCode(this.arquivo);
+        hash = 73 * hash + (this.nomeArquivo != null ? this.nomeArquivo.hashCode() : 0);
         return hash;
     }
 
@@ -78,16 +83,18 @@ public class AnexoEntity implements Serializable {
         if (!Arrays.equals(this.arquivo, other.arquivo)) {
             return false;
         }
+        if ((this.nomeArquivo == null) ? (other.nomeArquivo != null) : !this.nomeArquivo.equals(other.nomeArquivo)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "AnexoEntity{" + "id=" + id + ", arquivo=" + arquivo + '}';
+        return "AnexoEntity{" + "id=" + id + ", arquivo=" + arquivo + ", nomeArquivo=" + nomeArquivo + '}';
     }
     
     
-
    
     
     

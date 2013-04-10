@@ -28,8 +28,8 @@ public class MemorandoEntity implements Serializable {
     @Column (name = "conteudo") 
     private String conteudo;  
     
-    @JoinColumn(name = "memorando", referencedColumnName = "id")
-    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Memorando", referencedColumnName = "id", nullable = false)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<AnexoEntity> anexoList;
     
     @JoinColumn(name = "remetente_id", referencedColumnName="id", nullable=false)
