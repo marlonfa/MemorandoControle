@@ -9,27 +9,29 @@
         <title>Anexo List</title>
     </h:head>
     <h:body>   
-        <div>
+        <div id="div">
             <p:growl id="messages"/> 
             <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
                 <p:graphicImage value="../resources/images/ajaxloadingbar.gif" />  
             </p:dialog>  
 
             <h:form id="form">
-                <p:dataTable var="anexo" value="#{memorandoController.listarAnexo()}">
+                <p:dataTable id="table" var="anexo" value="#{memorandoController.listarAnexo()}">
                     <p:column>
                         <f:facet name="header">Anexo</f:facet>
                         <h:outputText value="#{anexo.nomeArquivo}" />  
                     </p:column>
                     <p:column>
-                        <f:facet name="header">Download</f:facet>
+                        <f:facet name="header">Download</f:facet>                         
                         <p:commandButton id="downloadLink" value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)"   
-                                         icon="ui-icon-arrowthick-1-s">  
-                            <f:param name="nomeArquivo" value="#{anexo.nomeArquivo}" />
+                                         icon="ui-icon-arrowthick-1-s" >  
                             
+                           
                             <f:setPropertyActionListener target="#{memorandoController.anexoSelecionado}" value="#{anexo}" />
+                           
                             <p:fileDownload value="#{memorandoController.downloadAnexo()}" />                             
                         </p:commandButton>  
+                        
                     </p:column>
 
 

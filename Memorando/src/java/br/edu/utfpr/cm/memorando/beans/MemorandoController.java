@@ -60,7 +60,6 @@ public class MemorandoController implements Serializable {
     }
 
     public AnexoEntity getAnexoSelecionado() {
-        anexoSelecionado = new AnexoEntity();
         return anexoSelecionado;
     }
 
@@ -117,9 +116,9 @@ public class MemorandoController implements Serializable {
 
     public StreamedContent downloadAnexo() {
         /*Cria um map de parametros*/
-         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+//         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
          /*Atribui a string nomeArquivo o valor do parametro nomeArquivo*/
-	 String nomeArquivo = params.get("nomeArquivo");
+//	 String nomeArquivo = params.get("nomeArquivo");
         try {
             /*Cria um InputStream com o campo byte[] */
             InputStream stream = new ByteArrayInputStream(this.anexoSelecionado.getArquivo());
@@ -128,7 +127,7 @@ public class MemorandoController implements Serializable {
             /*Pega o tipo de Mime do byte[]*/
             MagicMatch match = parser.getMagicMatch(this.anexoSelecionado.getArquivo());
             //Primeiro parametro é o stream, segundo é o tipo de arquivo, terceiro é o nome do arquivo
-            file = new DefaultStreamedContent(stream, match.getMimeType(), nomeArquivo);
+            file = new DefaultStreamedContent(stream, match.getMimeType(), this.anexoSelecionado.getNomeArquivo());
         } catch (MagicParseException ex) {
             Logger.getLogger(MemorandoController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MagicMatchNotFoundException ex) {
