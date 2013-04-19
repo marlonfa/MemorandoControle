@@ -47,6 +47,10 @@ public class PageManager implements Serializable {
         this.paginaAtiva = "./pages/AnexoList.xhtml";
     }
     
+    public void setPg6() {
+        this.paginaAtiva = "./pages/MemorandoView.xhtml";
+    }
+    
     public String getPg1() {
         return this.paginaAtiva;
     }

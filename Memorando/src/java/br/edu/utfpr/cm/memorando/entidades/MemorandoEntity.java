@@ -25,7 +25,7 @@ public class MemorandoEntity implements Serializable {
     @Column  (name = "assunto") 
     private String assunto;
     
-    @Column (name = "conteudo") 
+    @Column (name = "conteudo", length = 3000) 
     private String conteudo;  
     
     @JoinColumn(name = "Memorando", referencedColumnName = "id", nullable = false)

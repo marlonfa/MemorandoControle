@@ -7,8 +7,8 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"> 
     <div>
     <p:growl id="messages"/> 
-    <h:form>
-        <p:dataTable var="memorando" value="#{memorandoController.listarMemorandos()}" id="asdfg">  
+    <h:form id="form">
+         <p:dataTable var="memorando" value="#{memorandoController.listarMemorandos()}" id="asdfg">  
             <f:facet name="header">
                 Lista de Memorandos
             </f:facet>
@@ -38,12 +38,6 @@
                 </f:facet>
                 <h:outputText value="#{memorando.assunto}" />
             </p:column>
-            <p:column sortBy="#{memorando.conteudo}">
-                <f:facet name="header">
-                    <h:outputText value="Conteúdo" />
-                </f:facet>
-                <h:outputText value="#{memorando.conteudo}" />
-            </p:column>
             <p:column sortBy="#{memorando.remetente}">
                 <f:facet name="header">
                     <h:outputText value="Remetente" />
@@ -52,14 +46,28 @@
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Anexo" />
+                    <h:outputText value="Visualizar Memorando" />
                 </f:facet>
-                <h:commandLink action="#{pageManager.setPg5()}" >
-                    <h:outputText value="Visualizar" rendered="#{not empty memorando.anexoList}" />
+                <!--update faz que ao clicar no botão voltar do navegador, volte para a página index, evitando o problema do link ser o mesmo para todos-->
+                <p:commandLink action="#{pageManager.setPg6()}" update="@form" >
+                    <h:outputText value="Visualizar" />
                         <f:setPropertyActionListener target="#{memorandoController.memorandoSelecionado}" value="#{memorando}" />
-                    </h:commandLink>       
+                </p:commandLink>       
                 
             </p:column>
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Anexo" />
+                </f:facet>
+                <!--update faz que ao clicar no botão voltar do navegador, volte para a página index, evitando o problema do link ser o mesmo para todos-->
+                <p:commandLink action="#{pageManager.setPg5()}" update="@form"  >
+                    <h:outputText value="Download" rendered="#{not empty memorando.anexoList}" />
+                        <f:setPropertyActionListener target="#{memorandoController.memorandoSelecionado}" value="#{memorando}" />
+                </p:commandLink>       
+                
+            </p:column>
+            
            
         </p:dataTable>
     </h:form>

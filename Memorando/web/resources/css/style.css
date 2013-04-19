@@ -68,3 +68,7 @@ img { border: none; }
     color: #666;
     font-weight: 600;
 }
+
+.label {
+    font-weight: bold;
+}
